@@ -12,6 +12,7 @@ type ButtonProps = {
 export default function Button({ onPress, text, type }: ButtonProps) {
   return (
     <Pressable
+      testID="button"
       onPress={onPress}
       style={{
         padding: SPACING.md,

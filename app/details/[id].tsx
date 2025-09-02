@@ -31,7 +31,7 @@ export default function PostDetailsScreen() {
 
   return (
     <ScrollView>
-      <DefaultLayout header={postDetails?.title || ""}>
+      <DefaultLayout header={postDetails.title}>
         <PostDetails post={postDetails} />
       </DefaultLayout>
     </ScrollView>

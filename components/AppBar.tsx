@@ -26,7 +26,11 @@ export default function AppBar() {
     >
       <View style={{ height: 20, width: 10 }}>
         {canGoBack && (
-          <Pressable onPress={() => router.back()} hitSlop={15}>
+          <Pressable
+            testID="back-button"
+            onPress={() => router.back()}
+            hitSlop={15}
+          >
             <Image
               source={require("@/assets/images/back-arrow.png")}
               style={{ height: 20, width: 10 }}
@@ -35,6 +39,7 @@ export default function AppBar() {
         )}
       </View>
       <Pressable
+        testID="logo-button"
         onPress={() => router.navigate("/")}
         hitSlop={15}
         style={{ flexDirection: "row", gap: SPACING.md, alignItems: "center" }}

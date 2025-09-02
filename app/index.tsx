@@ -6,7 +6,7 @@ import { FONT_SIZES } from "@/constants/fontSizes";
 import { useGetPostsList } from "@/hooks/usePosts";
 import { Text } from "react-native";
 
-export default function ListScreen() {
+export default function PostsListScreen() {
   const { postsList, isPostsListPending, refetchPosts } = useGetPostsList();
 
   if (isPostsListPending) {

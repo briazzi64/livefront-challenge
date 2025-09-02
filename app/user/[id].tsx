@@ -7,7 +7,7 @@ import { useGetPostsList } from "@/hooks/usePosts";
 import { useLocalSearchParams } from "expo-router";
 import { Text } from "react-native";
 
-export default function PostDetailsScreen() {
+export default function UserPostsListScreen() {
   const { id = "" } = useLocalSearchParams<{ id: string }>();
   const { postsList, isPostsListPending, refetchPosts } = useGetPostsList(id);
   const header = `Posts by ${id}`;
