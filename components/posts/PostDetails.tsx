@@ -16,6 +16,8 @@ export default function PostDetails({ post }: PostDetailsProps) {
       <Image
         source={{ uri: `https://picsum.photos/500?random=${id}` }}
         style={{ width: "100%", height: 250 }}
+        accessibilityLabel="The major image related to the post"
+        defaultSource={require("@/assets/images/image-blur.jpg")}
       />
       <Text style={{ fontSize: FONT_SIZES.md, marginVertical: SPACING.md }}>
         {body}

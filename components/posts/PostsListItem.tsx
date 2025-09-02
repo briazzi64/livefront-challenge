@@ -37,6 +37,8 @@ export default function PostsListItem({ item }: PostsListItemProps) {
         <Image
           source={{ uri: `https://picsum.photos/500?random=${id}` }}
           style={{ width: 100, height: 100 }}
+          accessibilityLabel="The major image related to the post"
+          defaultSource={require("@/assets/images/image-blur.jpg")}
         />
         <Text style={{ fontSize: FONT_SIZES.xs, flexShrink: 1 }}>{body}</Text>
       </View>
