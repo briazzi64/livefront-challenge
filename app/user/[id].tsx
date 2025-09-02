@@ -4,14 +4,17 @@ import PostsList from "@/components/posts/PostsList";
 import { COLORS } from "@/constants/color";
 import { FONT_SIZES } from "@/constants/fontSizes";
 import { useGetPostsList } from "@/hooks/usePosts";
+import { useLocalSearchParams } from "expo-router";
 import { Text } from "react-native";
 
-export default function ListScreen() {
-  const { postsList, isPostsListPending, refetchPosts } = useGetPostsList();
+export default function PostDetailsScreen() {
+  const { id = "" } = useLocalSearchParams<{ id: string }>();
+  const { postsList, isPostsListPending, refetchPosts } = useGetPostsList(id);
+  const header = `Posts by ${id}`;
 
   if (isPostsListPending) {
     return (
-      <DefaultLayout header="All Posts">
+      <DefaultLayout header={header}>
         <LoadingIndicator />
       </DefaultLayout>
     );
@@ -19,16 +22,16 @@ export default function ListScreen() {
 
   if (postsList.length === 0) {
     return (
-      <DefaultLayout header="No Posts">
+      <DefaultLayout header={header}>
         <Text style={{ fontSize: FONT_SIZES.md, color: COLORS.negative }}>
-          No posts have been made yet. Please check back again soon
+          User {id} has no posts!
         </Text>
       </DefaultLayout>
     );
   }
 
   return (
-    <DefaultLayout header="All Posts">
+    <DefaultLayout header={header}>
       <PostsList
         postsList={postsList}
         refetchPosts={refetchPosts}

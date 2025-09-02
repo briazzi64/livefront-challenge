@@ -2,12 +2,12 @@ import { PostListItem } from "@/types/posts";
 import { api } from "@/utils/api";
 import { useQuery } from "@tanstack/react-query";
 
-export const useGetPostsList = () => {
+export const useGetPostsList = (userId?: string) => {
   const { data, isPending, refetch } = useQuery({
-    queryKey: ["posts"],
+    queryKey: userId ? ["posts", userId] : ["posts"],
     queryFn: async () => {
       const { data } = await api<PostListItem[]>({
-        url: "/posts",
+        url: userId ? `/users/${userId}/posts` : "/posts",
         method: "GET",
       });
 
@@ -24,7 +24,7 @@ export const useGetPostsList = () => {
 
 export const useGetPostDetails = (uuid: string) => {
   const { data, isPending } = useQuery({
-    queryKey: ["posts", uuid],
+    queryKey: ["postDetails", uuid],
     queryFn: async () => {
       const { data } = await api<PostListItem>({
         url: `/posts/${uuid}`,
