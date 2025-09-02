@@ -11,6 +11,8 @@ This solution leverages [Expo](https://docs.expo.dev/workflow/overview/) and [Ex
 - [Expo Router](https://docs.expo.dev/router/introduction/) - File based router for navigation
 - [React Hook Query](https://tanstack.com/query/latest/docs/framework/react/overview) - Used for API requests, state management, and response caching
 - [Axios](https://axios-http.com/docs/intro) - Used for API requests
+- [JSON Plaeholder](https://jsonplaceholder.typicode.com/) - Free Rest API for data that populates the app
+- [Lorem Picsum](https://picsum.photos/) - Free repository of images
 
 ## Setup
 
