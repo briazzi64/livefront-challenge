@@ -3,7 +3,7 @@ import { api } from "@/utils/api";
 import { useQuery } from "@tanstack/react-query";
 
 export const useGetPostsList = () => {
-  const { data, isPending } = useQuery({
+  const { data, isPending, refetch } = useQuery({
     queryKey: ["posts"],
     queryFn: async () => {
       const { data } = await api<PostListItem[]>({
@@ -18,6 +18,7 @@ export const useGetPostsList = () => {
   return {
     postsList: data || [],
     isPostsListPending: isPending,
+    refetchPosts: refetch,
   };
 };
 
@@ -25,13 +26,14 @@ export const useGetPostDetails = (uuid: string) => {
   const { data, isPending } = useQuery({
     queryKey: ["posts", uuid],
     queryFn: async () => {
-      const { data } = await api<PostListItem[]>({
+      const { data } = await api<PostListItem>({
         url: `/posts/${uuid}`,
         method: "GET",
       });
 
       return data;
     },
+    enabled: !!uuid,
   });
 
   return {
