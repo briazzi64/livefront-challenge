@@ -27,6 +27,8 @@ export default function PostsListItem({ item }: PostsListItemProps) {
           fontWeight: "bold",
           fontSize: FONT_SIZES.md,
           marginBottom: SPACING.sm,
+          color: COLORS.primary,
+          textTransform: "capitalize",
         }}
       >
         {title}

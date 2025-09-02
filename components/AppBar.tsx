@@ -5,8 +5,10 @@ import { FONT_SIZES } from "@/constants/fontSizes";
 import { SPACING } from "@/constants/spacing";
 import { View, Text, Image, Pressable } from "react-native";
 import { router, usePathname } from "expo-router";
+import { useOrientation } from "@/hooks/useOrientation";
 
 export default function AppBar() {
+  const { isPortrait } = useOrientation();
   const pathname = usePathname();
   const canGoBack = pathname !== "/";
 
@@ -14,7 +16,7 @@ export default function AppBar() {
     <View
       style={{
         paddingHorizontal: SPACING.md,
-        paddingTop: Constants.statusBarHeight,
+        paddingTop: isPortrait ? Constants.statusBarHeight : SPACING.md,
         paddingBottom: SPACING.sm,
         backgroundColor: COLORS.primary,
         flexDirection: "row",
@@ -32,13 +34,19 @@ export default function AppBar() {
           </Pressable>
         )}
       </View>
-      <Image
-        source={require("@/assets/images/icon.jpeg")}
-        style={{ height: 50, width: 50 }}
-      />
-      <Text style={{ color: COLORS.white, fontSize: FONT_SIZES.lg }}>
-        Livefront
-      </Text>
+      <Pressable
+        onPress={() => router.navigate("/")}
+        hitSlop={15}
+        style={{ flexDirection: "row", gap: SPACING.md, alignItems: "center" }}
+      >
+        <Image
+          source={require("@/assets/images/icon.jpeg")}
+          style={{ height: 50, width: 50, borderRadius: 15 }}
+        />
+        <Text style={{ color: COLORS.white, fontSize: FONT_SIZES.lg }}>
+          Livefront
+        </Text>
+      </Pressable>
     </View>
   );
 }

@@ -3,6 +3,8 @@ import { PostListItem } from "@/types/posts";
 import { RefetchOptions, QueryObserverResult } from "@tanstack/react-query";
 import { FlatList, RefreshControl } from "react-native";
 import PostsListItem from "./PostsListItem";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useOrientation } from "@/hooks/useOrientation";
 
 type PostsListProps = {
   postsList: PostListItem[];
@@ -17,12 +19,19 @@ export default function PostsList({
   isPostsListPending,
   refetchPosts,
 }: PostsListProps) {
+  const { isPortrait } = useOrientation();
+  const insets = useSafeAreaInsets();
+
   return (
     <FlatList
       data={postsList}
       renderItem={({ item }) => <PostsListItem item={item} />}
       keyExtractor={(item) => item.id.toString()}
-      contentContainerStyle={{ gap: SPACING.md }}
+      contentContainerStyle={{
+        gap: SPACING.md,
+        paddingBottom: (isPortrait ? SPACING.md : SPACING.lg) + insets.bottom,
+      }}
+      refreshing={isPostsListPending}
       refreshControl={
         <RefreshControl
           refreshing={isPostsListPending}
