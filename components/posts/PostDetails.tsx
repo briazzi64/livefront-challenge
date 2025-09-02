@@ -24,7 +24,7 @@ export default function PostDetails({ post }: PostDetailsProps) {
       </Text>
       <Button
         onPress={() => router.navigate(`/user/${userId}`)}
-        text={`More Posts By ${userId}`}
+        text={`More Posts By User${userId}`}
         type="secondary"
       />
     </>

@@ -10,7 +10,7 @@ import { Text } from "react-native";
 export default function UserPostsListScreen() {
   const { id = "" } = useLocalSearchParams<{ id: string }>();
   const { postsList, isPostsListPending, refetchPosts } = useGetPostsList(id);
-  const header = `Posts by ${id}`;
+  const header = `Posts by User${id}`;
 
   if (isPostsListPending) {
     return (
