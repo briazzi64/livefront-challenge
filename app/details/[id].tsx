@@ -5,7 +5,7 @@ import { COLORS } from "@/constants/color";
 import { FONT_SIZES } from "@/constants/fontSizes";
 import { useGetPostDetails } from "@/hooks/usePosts";
 import { useLocalSearchParams } from "expo-router";
-import { Text } from "react-native";
+import { ScrollView, Text } from "react-native";
 
 export default function PostDetailsScreen() {
   const { id = "" } = useLocalSearchParams<{ id: string }>();
@@ -30,8 +30,10 @@ export default function PostDetailsScreen() {
   }
 
   return (
-    <DefaultLayout header={postDetails?.title || ""}>
-      <PostDetails post={postDetails} />
-    </DefaultLayout>
+    <ScrollView>
+      <DefaultLayout header={postDetails?.title || ""}>
+        <PostDetails post={postDetails} />
+      </DefaultLayout>
+    </ScrollView>
   );
 }

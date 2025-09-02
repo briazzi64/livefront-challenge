@@ -24,7 +24,7 @@ export default function AppBar() {
     >
       <View style={{ height: 20, width: 10 }}>
         {canGoBack && (
-          <Pressable onPress={() => router.back()}>
+          <Pressable onPress={() => router.back()} hitSlop={15}>
             <Image
               source={require("@/assets/images/back-arrow.png")}
               style={{ height: 20, width: 10 }}
