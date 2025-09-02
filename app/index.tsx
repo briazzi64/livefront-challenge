@@ -1,5 +1,13 @@
-import { Text } from "react-native";
+import DefaultLayout from "@/components/layouts/DefaultLayout";
+import PostsList from "@/components/posts/PostsList";
+import { useGetPostsList } from "@/hooks/usePosts";
 
-export default function HomeScreen() {
-  return <Text style={{ color: "black", fontSize: 40 }}>Home</Text>;
+export default function ListScreen() {
+  const { postsList, isPostsListPending } = useGetPostsList();
+
+  return (
+    <DefaultLayout isLoading={isPostsListPending} header="Posts">
+      <PostsList postsList={postsList} />
+    </DefaultLayout>
+  );
 }
